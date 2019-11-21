@@ -1,0 +1,77 @@
+.parent {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 200px 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 30vw;
+    min-width: 200px;
+    margin: 100px auto;
+    padding: 10px;
+}
+
+.fieldset {
+    border: 3px solid #1f2833;
+    padding: 20px;
+
+}
+
+.legend {
+    color: #FFF;
+
+    font-size: 1.5em;
+    padding: 5px;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: 'Spinnaker', sans-serif;
+    color: #66fcf1;
+}
+
+.input {
+    width: 100%;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    font-family: 'Spinnaker', sans-serif;
+}
+
+.input:focus {
+    border-color: #66fcf1;
+    box-shadow: 0 0 8px 0 #66fcf1;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.75em 1em;
+    border: 0.1em solid #0b0c10;
+    border-radius: 4px;
+    margin: 20px 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #0b0c10;
+    text-align: center;
+    transition: 0.3s;
+    font-family: 'Spinnaker', sans-serif;
+    width: 100%;
+
+}
+
+.button:hover {
+    border-color: #66fcf1;
+    box-shadow: 0 0 8px 0 #66fcf1;
+}
+
+.error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    margin: 10px 0px;
+    text-align:center;
+    border-radius: 4px;
+ 
+}

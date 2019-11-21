@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Login from './components/Login/Login';
+import Main from './containers/main';
+import Cookies from 'js-cookie'
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    loggedIn: 0,
+    userName: "",
+    authToken: ""
+  }
+  
+  tokenCheckHandler = () => {
+    axios
+      .post('http://localhost:3001/user/checkUser/', {
+      userLogin: this.state.userName,
+      authToken: this.state.authToken
+    })
+      .then(response => {
+        if (response.data.username === "EXPIRED") {
+          this.setState({loggedIn: 0})
+        } else {
+          if (!this.state.loggedIn) {
+            this.setState({loggedIn: 1});       
+          }
+        }
+      })
+  }
+
+  loggedInHandler = () => {
+    this.setState({
+      userName: Cookies.get('apiClientUserName'),
+      authToken: Cookies.get('apiClientUserToken')
+    }, function() {
+      this.tokenCheckHandler();
+    });
+  }
+
+  componentDidMount(){
+    this.loggedInHandler();
+  }
+  render() {
+    let Landing;
+    if (this.state.loggedIn) {
+      Landing = <Main tokenCheck={this.tokenCheckHandler}/>;
+    } else {
+      Landing = <Login loginHandler={this.loggedInHandler}/>
+    }
+    return (
+      <div>
+        {Landing}
+      </div>
+    )
+  }
 }
 
 export default App;
