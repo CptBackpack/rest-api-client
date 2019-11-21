@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Switch} from "react-router-dom";
 
 import Routes from '../Routes/Routes';
 class Main extends Component {
