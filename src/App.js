@@ -19,11 +19,16 @@ class App extends Component {
       authToken: this.state.authToken
     })
       .then(response => {
+       console.log(response.data);
         if (response.data.username === "EXPIRED") {
           this.setState({loggedIn: 0})
+          Cookies.set('apiClientUserName', "");
+          Cookies.set('apiClientUserToken', "");
+        
         } else {
           if (!this.state.loggedIn) {
             this.setState({loggedIn: 1});       
+           
           }
         }
       })
@@ -36,6 +41,8 @@ class App extends Component {
     }, function() {
       this.tokenCheckHandler();
     });
+
+    
   }
 
   componentDidMount(){

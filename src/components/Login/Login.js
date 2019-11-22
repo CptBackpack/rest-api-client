@@ -34,11 +34,10 @@ class Login extends Component {
         if (response.data.username === "INVALID") {
           this.setState({loggedIn: 0})
         } else {
+          console.log(response.data);
           Cookies.set('apiClientUserName', response.data.username);
           Cookies.set('apiClientUserToken', response.data.authToken);
-          this
-            .props
-            .loginHandler();
+          this.props.loginHandler();
         }
       })
   }
